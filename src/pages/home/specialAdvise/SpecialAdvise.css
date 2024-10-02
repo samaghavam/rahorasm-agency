@@ -1,0 +1,33 @@
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    display: none;
+}
+
+.carousel-item{
+    transition: transform 4.6s linear!important;
+}
+.carousel-indicators{
+    bottom: -40px;
+}
+.carousel-indicators [data-bs-target]{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: var(--SecondaryColor);
+
+}
+.advise-container{
+    background: linear-gradient(90deg, #16191c 0, #16191c 65.84%, #1ebfbf 0, #1ebfbf);
+    border-radius: 48px;
+}
+.advise-title{
+    background: url('../../../assets/images/home/advise-title.webp') no-repeat;
+    background-size: 100% 75px;
+    background-position: center;
+    background-origin: border-box;
+    padding: 20px;
+    
+}
+
+.carousel .row{
+    flex-wrap: nowrap;
+}
