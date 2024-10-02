@@ -1,0 +1,19 @@
+.timeInfo{
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+
+.timeInfoContainer:hover{
+    border: 3px solid var(--PrimaryColor) !important;
+    cursor: pointer;
+    transition: all 0.3s;
+
+}
+.timeInfoContainer:active{
+    border: 2px solid var(--PrimaryColor);
+}
+.timeLink:hover{
+    color: black;
+}
