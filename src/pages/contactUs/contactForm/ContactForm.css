@@ -1,0 +1,17 @@
+.form-select{
+    border-right: none !important;
+    color: var(--inputColor) !important;
+}
+.form-select:focus{
+    box-shadow: none;
+    border-color: var(--bs-border-color);
+    outline: none;
+}
+.option-test{
+    color: var(--back2Color) !important;
+    border-radius: 15px;
+}
+
+.input-group-text , .form-control{
+    border: 0;
+}
