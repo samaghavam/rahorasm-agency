@@ -1,0 +1,10 @@
+.bg-tab{
+    background: url("../../assets/images/tours/download.png") no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    background-origin: content-box;
+}
+
+.active-btn:focus{
+    color: var(--SecondaryColor) !important;
+}
