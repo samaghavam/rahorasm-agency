@@ -1,0 +1,26 @@
+.accordion-button:not(.collapsed) {
+    color: #000000;
+    background-color: var(--PrimaryColor);
+}
+.accordion{
+    --bs-accordion-btn-focus-box-shadow: none;
+    --bs-accordion-active-color: none;
+    --bs-accordion-active-bg: var(--PrimaryColor);
+    --bs-accordion-border-color: rgb(200, 200, 200);
+    --bs-accordion-btn-bg: #f2f2f5;
+}
+.accordion-button:hover{
+    background: #e7e7e8;
+}
+.accordion-button{
+    font-weight: bold;
+}
+.visa-bg{
+    background: url("../../assets/images/visa/composition-toy-jet-with-airline-passport-bus.png") no-repeat;
+    background-size: contain;
+    background-origin: border-box;
+    background-position: right bottom;
+}
+.visabg{
+    background-color: #f2f2f5bd;
+}
