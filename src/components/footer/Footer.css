@@ -1,0 +1,4 @@
+.footer-link:hover{
+    color: var(--PrimaryColor)!important;
+    transition: all 0.4s;
+}
