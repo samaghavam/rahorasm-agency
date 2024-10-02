@@ -1,0 +1,22 @@
+.arrowImg{
+    transform: rotate(-90deg);
+    
+}
+.moveBox{
+    animation: move 2s infinite alternate linear;
+}
+@keyframes move{
+    0%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateY(10px);
+    }
+}
+
+.icon:hover{
+    fill: var(--SecondaryColor);
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: all 0.4s;
+}

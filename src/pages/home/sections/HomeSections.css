@@ -1,0 +1,47 @@
+@media screen and (min-width:992px){
+    .top-right-b{
+      border-top-right-radius: 48px;
+    }
+    .top-left-b{
+        border-top-left-radius: 48px;
+    }
+    .bottom-right-b{
+        border-bottom-right-radius: 48px;
+    }
+    .bottom-left-b{
+        border-bottom-left-radius: 48px;
+    }
+  }
+  
+  
+  .asia-title{
+      background: url("../../../assets/images/home/advise-title.webp") no-repeat;
+      background-size: 105% 77px;
+      background-position: right;
+      background-origin: border-box;
+      padding: 20px;
+  }
+  .europeSection{
+      max-height: 450px;
+      overflow-y: auto;
+  }
+  
+  /* width */
+  ::-webkit-scrollbar {
+      width: 3px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: var(--back2Color);
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(78, 77, 77);
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
