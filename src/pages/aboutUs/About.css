@@ -1,0 +1,11 @@
+.about-container{
+    background: linear-gradient(90deg, var(--back2Color) 0, var(--back2Color) 40.84%, #1ebfbf 0, #1ebfbf);
+    border-radius: 48px;
+}
+@media screen and (max-width: 992px) {
+    .text-color{
+        color: #f2f2f2;
+        text-shadow: rgb(27, 25, 25) 2px 1px;
+    }
+    
+}
