@@ -1,0 +1,11 @@
+.homeImg{
+    position: sticky;
+    top: 30px;
+    transition: all 0.4s;
+}
+.home-form-bg{
+    background: url("../../assets/images/home/home-form-bg.webp") no-repeat;
+    background-size: contain;
+}
+
+
