@@ -1,0 +1,31 @@
+.icon-style{
+    width: 40px;
+    height:40px;
+    border-radius: 50%;
+}
+@media screen and (max-width:992px) {
+    .icon-style{
+        width: 25px;
+        height:25px;
+    }
+    .col-style{
+        background-color: #fff1da;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .border-right{
+        border-bottom-right-radius: 0.25rem;
+    }
+    .border-left{
+        border-bottom-left-radius: 0.25rem;
+    }
+    
+}
+@media screen and (min-width:992px) {
+    .add-padding{
+        padding: 0.7rem;
+    }
+    
+}

@@ -1,0 +1,24 @@
+@media screen and (max-width:992px) {
+   .min-height50{
+    min-height: 62px;
+    display: flex;
+    align-items: center;
+   } 
+   .header-bg{
+    padding: 5px;
+    border-bottom: 2px solid #f2f2f2;
+   }
+   .border-none{
+    border-right: none !important;
+   }
+   .max-height2{
+    max-height: 310px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+}
+.max-height2::-webkit-scrollbar{
+    display: none;
+}
+}
