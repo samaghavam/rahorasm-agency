@@ -11,7 +11,7 @@ function AsiaCarousel() {
         queryKey: ['tours'],
         queryFn: async () => {
             const response = await axios.get(
-                'http://5.161.155.143/tour/tours/',
+                'https://rahorasm.msdcorporation.top/tour/tours/',
             )
             return response.data
         },

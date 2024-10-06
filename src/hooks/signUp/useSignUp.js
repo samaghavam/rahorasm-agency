@@ -2,7 +2,10 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom"; // to facilitate navigation
 import axios from "axios";
 
-const REGISTER_URL = "http://5.161.155.143/auth/signup/request"; // replace with your base URL
+// const REGISTER_URL = "http://5.161.155.143/auth/signup/request"; 
+
+const REGISTER_URL = "https://rahorasm.msdcorporation.top/auth/signup/request"; 
+
 
 const useSignup = () => {
   const [success, setSuccess] = useState(false);

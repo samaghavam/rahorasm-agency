@@ -12,7 +12,7 @@ function VisaSection(){
     const {data,isPending} = useQuery({
       queryKey:["Visas"],
       queryFn:async ()=>{
-        const response =await axios.get("http://5.161.155.143/visa/visas/") 
+        const response =await axios.get("https://rahorasm.msdcorporation.top/visa/visas/") 
         return response.data
       }
     })

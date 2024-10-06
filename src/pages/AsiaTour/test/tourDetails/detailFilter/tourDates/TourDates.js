@@ -19,7 +19,7 @@ function TourDates() {
   
   useEffect(() => {
     // Replace 'YOUR_API_URL' with the actual API URL
-    fetch('http://5.161.155.143/tour/tours/')
+    fetch('https://rahorasm.msdcorporation.top/tour/tours/')
       .then(response => response.json())
       .then(data => {
         // Assuming we want the first tour for simplicity

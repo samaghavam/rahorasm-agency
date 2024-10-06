@@ -14,7 +14,7 @@ function TourDetails() {
   const {data}= useQuery({
     queryKey:["Tourd"+tourId],
     queryFn:async()=>{
-      const res  = await axios.get(`http://5.161.155.143/tour/tours/${tourId}`)
+      const res  = await axios.get(`https://rahorasm.msdcorporation.top/tour/tours/${tourId}`)
       return res.data
     }
   })

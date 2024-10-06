@@ -14,7 +14,7 @@ const Blog = () => {
     useEffect(()=>{
         (async ()=>{
             try{
-                const response = await axios.get(`http://5.161.155.143/blog/posts/${blogId}/`)
+                const response = await axios.get(`https://rahorasm.msdcorporation.top/blog/posts/${blogId}/`)
                 setData(response.data)
             }catch(e){
                 setError(e)

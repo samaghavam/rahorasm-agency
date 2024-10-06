@@ -15,7 +15,7 @@ function Visa() {
     const {data:visaData,isPending} = useQuery({
         queryKey:[visaId],
         queryFn:async ()=>{
-            let res = await axios.get(`http://5.161.155.143/visa/visas/${visaId}`)
+            let res = await axios.get(`https://rahorasm.msdcorporation.top/visa/visas/${visaId}`)
             return res.data
         }
     })

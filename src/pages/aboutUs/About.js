@@ -11,7 +11,9 @@ function About() {
     const {isPending,error,data:cardDatas} = useQuery({
         queryKey:["aboutUs"],
         queryFn:async()=>{
-                const res = await axios.get("http://5.161.155.143/api/aboutus/");
+                // const res = await axios.get("http://5.161.155.143/api/aboutus/");
+                const res = await axios.get("https://rahorasm.msdcorporation.top/aboutus/");
+
                 return res.data
         }
     })

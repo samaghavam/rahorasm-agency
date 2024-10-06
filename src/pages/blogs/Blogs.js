@@ -13,7 +13,7 @@ function Blogs() {
   const {isPending,data,error} = useQuery({
     queryKey:["blogs"],
     queryFn:async()=>{
-      const res= await axios.get("http://5.161.155.143/blog/posts/");
+      const res= await axios.get("https://rahorasm.msdcorporation.top/blog/posts/");
       return res.data
     }
   })

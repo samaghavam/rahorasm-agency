@@ -32,7 +32,7 @@ function DurationTime() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://5.161.155.143/tour/packages/"); // Replace with your API URL
+        const response = await fetch("https://rahorasm.msdcorporation.top/tour/packages/"); // Replace with your API URL
         const result = await response.json();
 
         // Assuming we want the first item in the result array

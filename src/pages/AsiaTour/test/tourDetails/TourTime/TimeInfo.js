@@ -48,7 +48,7 @@ function InfoTime() {
 
   
   useEffect(() => {
-    axios.get("http://5.161.155.143/tour/packages/")
+    axios.get("https://rahorasm.msdcorporation.top/tour/packages/")
       .then(response => {
         setTours(response.data);
       })

@@ -42,7 +42,7 @@ function Login() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://5.161.155.143/auth/login/request", {
+      const response = await fetch("https://rahorasm.msdcorporation.top/auth/login/request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userCredentials),

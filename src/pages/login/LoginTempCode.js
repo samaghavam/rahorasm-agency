@@ -241,7 +241,7 @@ const LoginTempCode = () => {
         console.log(enteredCode)
         if(valid){
             try {
-                const response = await axios.post('http://5.161.155.143/auth/signup/validate', {
+                const response = await axios.post('https://rahorasm.msdcorporation.top/auth/signup/validate', {
                     phone_number:phone_number,
                     otp: enteredCode
                 });

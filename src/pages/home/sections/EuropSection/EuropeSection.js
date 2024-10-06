@@ -11,7 +11,7 @@ function EuropeSection(){
         queryKey: ['Europetour'],
         queryFn: async () => {
             const response = await axios.get(
-                'http://5.161.155.143/tour/tours/روپا',
+                'https://rahorasm.msdcorporation.top/tour/tours/روپاا',
             )
             return response.data
         },

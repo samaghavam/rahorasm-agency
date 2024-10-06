@@ -122,7 +122,7 @@ function NavTabsInfo() {
   useEffect(() => {
     const fetchTourData = async () => {
       try {
-        const response = await fetch('http://5.161.155.143/tour/tours/'); // Replace with your API endpoint
+        const response = await fetch('https://rahorasm.msdcorporation.top/tour/tours/'); // Replace with your API endpoint
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
