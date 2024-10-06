@@ -137,7 +137,7 @@ function TravelsCard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get("http://5.161.155.143/tour/packages/");
+                const res = await axios.get("https://rahorasm.msdcorporation.top/tour/packages/");
                 setCardDatas(res.data || []);
                 setOpenStates(Array(res.data.length).fill(false));
             } catch (error) {

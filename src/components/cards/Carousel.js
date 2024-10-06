@@ -10,7 +10,7 @@ function CarouselCustome(){
       enabled:false,
       queryFn: async () => {
         const response = await axios.get(
-          'http://5.161.155.143/tour/tours/?continent=آسیا',
+          'https://rahorasm.msdcorporation.top/tour/tours/?continent=آسیا',
         )
         return response.data[0]
       },

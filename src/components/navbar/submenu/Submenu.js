@@ -13,7 +13,7 @@ function SubmenuAsia(){
     queryKey: ['navbar'],
     queryFn: async () => {
       const response = await axios.get(
-        'http://5.161.155.143/tour/navbar/',
+        'https://rahorasm.msdcorporation.top/tour/navbar/',
       )
       return response.data
     },
