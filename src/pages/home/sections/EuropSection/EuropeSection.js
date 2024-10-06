@@ -11,7 +11,7 @@ function EuropeSection(){
         queryKey: ['Europetour'],
         queryFn: async () => {
             const response = await axios.get(
-                'https://rahorasm.msdcorporation.top/tour/tours/روپاا',
+                'https://rahorasm.msdcorporation.top/tour/tours/اروپا',
             )
             return response.data
         },
@@ -22,7 +22,7 @@ function EuropeSection(){
         }
     },[data])
     return(
-        <Col className="bg-black p-5 top-left-b">
+        <Col className="bg-black p-5 top-left-b " xs={12} lg={6}>
             <h3 className="text-white pb-2 fw-bold">تازه ترین تورهای اروپا <span className="fs-6">(ویژه تابستان 1403)</span></h3>
             <div className="europeSection mt-2 p-3">
                 {euTours&&euTours.length>0&&data.map((tour)=>(

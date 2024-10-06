@@ -45,3 +45,8 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
+    @media screen and (man-width:992px){
+      .displaynone{
+        display: none;
+      }
+    }
