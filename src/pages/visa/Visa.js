@@ -48,7 +48,7 @@ function Visa() {
                             <Accordion.Item eventKey={visaData.id.toString()} key={visaData.id}>
                                 <Accordion.Header>مدارک لازم برای اخذ ویزای {visaData.title}</Accordion.Header>
                                     <Accordion.Body>
-                                    {visaData.questions.map((question) => (
+                                    {visaData&&visaData.questions.map((question) => (
                                         <div key={question.id}>
                                             <strong>{question.question_text}</strong>: {question.answer_text}
                                         </div>
