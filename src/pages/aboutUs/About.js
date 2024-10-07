@@ -6,6 +6,7 @@ import "./About.css";
 import axios from 'axios';
 import TimeCard from "../../components/time/TimeCard";
 import { useQuery } from "@tanstack/react-query";
+import Loader from "../../components/loaders/Loader";
 
 function About() {
     const {isPending,error,data:cardDatas} = useQuery({
@@ -17,7 +18,7 @@ function About() {
                 return res.data
         }
     })
-    if (isPending) return <div>Loading...</div>;
+    if (isPending) return <Loader />;
     if (error) return <div>{error.message}</div>;
 
     return (

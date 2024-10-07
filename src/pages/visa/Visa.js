@@ -7,6 +7,7 @@ import axios from "axios";
 import TimeCard from "../../components/time/TimeCard";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
+import Loader from "../../components/loaders/Loader";
 
 function Visa() {
     const [urlSearchParams,setUrlSearchParams]= useSearchParams()
@@ -25,7 +26,7 @@ function Visa() {
         setVisaId(vId) 
     },[urlSearchParams])
     if (isPending) {
-        return <div>Loading...</div>; // A simple loading indicator
+        return <Loader />; // A simple loading indicator
     }
 
     return (

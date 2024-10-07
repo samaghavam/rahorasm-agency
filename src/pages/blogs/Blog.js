@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Col,Row } from "react-bootstrap";
 import "./Blog.css"
+import Loader from "../../components/loaders/Loader";
 
 
 const Blog = () => {
@@ -26,7 +27,7 @@ const Blog = () => {
         console.log(data,loading)
     },[data,loading])
     if (loading||data==undefined) {
-        return <div>Loading...</div>; // Loading state
+        return <Loader />; // Loading state
     }
 
     if (error) {
