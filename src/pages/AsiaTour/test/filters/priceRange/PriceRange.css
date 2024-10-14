@@ -1,6 +1,0 @@
-.rc-slider-track, .rc-slider-tracks {
-    background-color: var(--PrimaryColor);
-}
-.rc-slider-handle{
-    border: solid 3px var(--PrimaryColor) !important;
-}

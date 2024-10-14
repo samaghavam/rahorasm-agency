@@ -4,6 +4,7 @@ import { Col } from "react-bootstrap";
 import '../Footer.css'
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Loader from "../../loaders/Loader";
 function TourLinks(){
     const { isPending, error,data:links, isFetching } = useQuery({
       queryKey: ['DBInfo'],
@@ -19,16 +20,20 @@ function TourLinks(){
         <Col md={6} lg={3}>
             <div className="contact-box text-light">
                 <h4 className="text-center text-white py-3 border-bottom border-2">پربازدیدترین تورها</h4> 
-                {links && links.footerLinks.map((link,i) => (
-                    <ul key={i}>
-                        <li>
-                            <NavLink to={link.path} className="text-light footer-link">
-                                <span><TiArrowLeftThick color="white"/></span>
-                                <span className="ps-2 text-white">تورهای {link.name}</span>
-                            </NavLink>
-                        </li>
-                    </ul>
-                ))}
+                {
+                    isPending?<Loader/>:(
+                            (links && links.footerLinks.map((link,i) => (
+                                <ul key={i}>
+                                    <li>
+                                        <NavLink to={link.path} className="text-light footer-link">
+                                            <span><TiArrowLeftThick color="white"/></span>
+                                            <span className="ps-2 text-white">تورهای {link.name}</span>
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            )))
+                    )
+                }
             </div>
 
 

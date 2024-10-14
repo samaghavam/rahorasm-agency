@@ -12,17 +12,18 @@ import Loader from "../../components/loaders/Loader";
 function Visa() {
     const [urlSearchParams,setUrlSearchParams]= useSearchParams()
     const [visaId,setVisaId]= useState()
-    const [isLoading, setIsLoading] = useState(true); // Loading state
     const {data:visaData,isPending} = useQuery({
         queryKey:[visaId],
+        enabled:visaId!=undefined,
         queryFn:async ()=>{
-            let res = await axios.get(`https://rahorasm.msdcorporation.top/visa/visas/${visaId}`)
+            let res = await axios.get(`process.env.REACT_APP_BASE_URL/visa/visas/${visaId}`)
             return res.data
         }
     })
     console.log(visaData)
     useEffect(()=>{
-        let vId = urlSearchParams.get("Visa")
+        let vId = urlSearchParams.get("visa")
+        console.log(vId)
         setVisaId(vId) 
     },[urlSearchParams])
     if (isPending) {
@@ -43,26 +44,28 @@ function Visa() {
                         </Col>
                     </Row>
                 }
-                <Row className="align-items-center">
-                    <Col lg={7}>
-                        <Accordion className="card-style rounded">
-                            <Accordion.Item eventKey={visaData.id.toString()} key={visaData.id}>
-                                <Accordion.Header>مدارک لازم برای اخذ ویزای {visaData.title}</Accordion.Header>
-                                    <Accordion.Body>
-                                    {visaData&&visaData.questions.map((question) => (
-                                        <div key={question.id}>
-                                            <strong>{question.question_text}</strong>: {question.answer_text}
-                                        </div>
-                                    ))}
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        </Accordion>
-                    </Col>
-                    <Col lg={5}>
-                        <VisaSection />
-                        <TimeCard />
-                    </Col>
-                </Row>
+                {visaData&&
+                    <Row className="align-items-center">
+                        <Col lg={7}>
+                            <Accordion className="card-style rounded">
+                                <Accordion.Item eventKey={visaData.id.toString()} key={visaData.id}>
+                                    <Accordion.Header>مدارک لازم برای اخذ ویزای {visaData.title}</Accordion.Header>
+                                        <Accordion.Body>
+                                        {visaData&&visaData.questions.map((question) => (
+                                            <div key={question.id}>
+                                                <strong>{question.question_text}</strong>: {question.answer_text}
+                                            </div>
+                                        ))}
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
+                        </Col>
+                        <Col lg={5}>
+                            <VisaSection />
+                            <TimeCard />
+                        </Col>
+                    </Row>
+                }
             </Container>
         </>
     );

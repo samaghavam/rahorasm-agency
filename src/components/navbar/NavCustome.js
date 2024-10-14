@@ -6,10 +6,16 @@ import { TbCircleLetterRFilled } from "react-icons/tb";
 import { IoPersonOutline } from "react-icons/io5";
 import Submenu from './submenu/Submenu';
 import { NavLink } from 'react-router-dom';
+import { useEffect,useState } from 'react';
+import {getCookie} from '../../utils';
 
 
 
 function NavCustome() {
+  const [active,setActive]=useState()
+  useEffect(()=>{
+    setActive(getCookie("active")==true)
+  },[])
   return (
     <>
       {['lg'].map((expand) => (
@@ -38,14 +44,16 @@ function NavCustome() {
                     <Submenu />
                 </Nav>
                 <Nav className="justify-content-end align-items-center flex-grow-1 pe-3">
-                  <NavLink to='/login'>
-                    <span className='p-2'>ورود</span>
-                  </NavLink>
+                  {active ? <>
+                    <NavLink to='/login'>
+                      <span className='p-2'>ورود</span>
+                    </NavLink>
                     <span>|</span>
-                  <NavLink to='/register'>
-                    <span className='px-2'>ثبت نام</span>
-                    <span><IoPersonOutline /></span>
-                  </NavLink>
+                    <NavLink to='/register'>
+                      <span className='px-2'>ثبت نام</span>
+                      <span><IoPersonOutline /></span>
+                    </NavLink></> : <></>
+                  }
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

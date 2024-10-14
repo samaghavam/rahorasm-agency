@@ -9,32 +9,23 @@ import Loader from "../../components/loaders/Loader";
 
 const Blog = () => {
     const { blogId } = useParams(); // Correct case for blogId
-    const [loading, setLoading] = useState(true); // For loading state
-    const [data,setData]= useState()
-    const [error,setError]= useState()
-    useEffect(()=>{
-        (async ()=>{
-            try{
-                const response = await axios.get(`https://rahorasm.msdcorporation.top/blog/posts/${blogId}/`)
-                setData(response.data)
-            }catch(e){
-                setError(e)
-            }
-            setLoading(false)
-        })()
-    },[])
-    useEffect(()=>{
-        console.log(data,loading)
-    },[data,loading])
-    if (loading||data==undefined) {
-        return <Loader />; // Loading state
-    }
-
+    const {isPending,data,error} = useQuery({
+        queryKey:[blogId],
+        enabled:blogId!=undefined,
+        queryFn:async ()=>{
+                const response = await axios.get(`process.env.REACT_APP_BASE_URL/blog/posts/${blogId}/`)
+                return response.data
+        }
+    })
     if (error) {
         return <div>{error.message}</div>; // Display error message
     }
+    if(isPending||data==undefined){
+        return <Loader/>
+    }
 
     return (
+        <>
             <Col className="center">
                 <Row className="center" xs={12} lg={4}>
                     <h1 className="Title">title</h1>
@@ -43,9 +34,10 @@ const Blog = () => {
                     <img className="img-fluid blog-card-img" src={data.image} /> {/* Assuming content field exists */}
                 </Row>
                 <Row xs={12} lg={4}>
-                    <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
                 </Row>
             </Col>
+            <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
+        </>
     );
 }
 

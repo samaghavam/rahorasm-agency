@@ -8,7 +8,7 @@ const HotelCity = ({ city }) => {
 
   const handleMoreInfoClick = () => {
     console.log(city); // Log to debug
-    navigate(`https://rahorasm.msdcorporation.top/hotels/${city.city}`); // Ensure city has correct structure
+    navigate(`process.env.REACT_APP_BASE_URL/hotels/${city.city}`); // Ensure city has correct structure
   };
 
   return (

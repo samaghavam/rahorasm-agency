@@ -13,7 +13,7 @@ function Contact(){
     const {data:infoDatas}=useQuery({
         queryKey:["contactUs"],
         queryFn:async()=>{
-            const res = await axios.get("https://rahorasm.msdcorporation.top/contactus")
+            const res = await axios.get(process.env.REACT_APP_BASE_URL+"/api/contactus")
             return res.data
         }
     })
@@ -27,7 +27,7 @@ function Contact(){
             decription: description
         }
         console.log(formdata)
-        const response = await axios.post("https://rahorasm.msdcorporation.top/auth/contact-us", formdata);
+        const response = await axios.post(process.env.REACT_APP_BASE_URL+"/auth/contact-us", formdata);
         console.log(response.data)
         // naviagte("/")
         

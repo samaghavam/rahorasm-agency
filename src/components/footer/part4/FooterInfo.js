@@ -8,12 +8,13 @@ import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col"
 import axios from "axios";
 import {useQuery} from "@tanstack/react-query"
+import Loader from "../../loaders/Loader";
 function FooterInfo(){
     const { isPending, error, footerInfo, isFetching } = useQuery({
         queryKey: ['DBInfo'],
         queryFn: async () => {
             const response = await axios.get(
-                './db.json',
+                '/db.json',
             )
             return response.data
         },
@@ -22,18 +23,21 @@ function FooterInfo(){
         <Col md={6} lg={3}>
             <div className="contact-box text-light">
                 <h4 className="text-center text-white py-3 border-bottom border-2">ارتباط با ما</h4>
-                {footerInfo && footerInfo.map((info, index) => (
-                <div className="contact-box text-light" key={index}>
-                    <h6 className="pt-2">
-                        {info.icon === 'IoLocationSharp' && <IoLocationSharp fontSize='1.1rem' color="white"/>}
-                        {info.icon === 'MdAccessTimeFilled' && <MdAccessTimeFilled fontSize='1.1rem' color="white"/>}
-                        {info.icon === 'FaPhoneFlip' && <FaPhoneFlip fontSize='1.1rem' color="white"/>}
-                        {info.icon === 'FaMobileScreenButton' && <FaMobileScreenButton fontSize='1.1rem' color="white"/>}
-                        {info.icon === 'FaEnvelope' && <FaEnvelope fontSize='1.1rem' color="white"/>}
-                        <span className="ps-2 text-white">{info.title}{(index >= 2 && index <= 5) && ` : ${info.desc}`}</span>
-                    </h6>
-                    {(index < 2) && <p className="text-white">{info.desc}</p>}
-                </div>))}
+                {isPending?<Loader/>:(
+                    footerInfo && footerInfo.map((info, index) => (
+                        <div className="contact-box text-light" key={index}>
+                            <h6 className="pt-2">
+                                {info.icon === 'IoLocationSharp' && <IoLocationSharp fontSize='1.1rem' color="white" />}
+                                {info.icon === 'MdAccessTimeFilled' && <MdAccessTimeFilled fontSize='1.1rem' color="white" />}
+                                {info.icon === 'FaPhoneFlip' && <FaPhoneFlip fontSize='1.1rem' color="white" />}
+                                {info.icon === 'FaMobileScreenButton' && <FaMobileScreenButton fontSize='1.1rem' color="white" />}
+                                {info.icon === 'FaEnvelope' && <FaEnvelope fontSize='1.1rem' color="white" />}
+                                <span className="ps-2 text-white">{info.title}{(index >= 2 && index <= 5) && ` : ${info.desc}`}</span>
+                            </h6>
+                            {(index < 2) && <p className="text-white">{info.desc}</p>}
+                        </div>
+                    ))
+                )}
                 <hr />
                 <div className="text-center text-white">
                     <RiInstagramFill fontSize='1.7rem' className="m-3 text-light" />

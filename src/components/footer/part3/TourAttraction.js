@@ -3,6 +3,7 @@ import { NavLink} from "react-router-dom";
 import { TiArrowLeftThick } from "react-icons/ti";
 import { Col } from "react-bootstrap";
 import { useQuery } from "@tanstack/react-query";
+import Loader from "../../loaders/Loader";
 function TourAttractionfooter(){
     const { isPending, error,data:attractions, isFetching } = useQuery({
       queryKey: ['DBInfo'],
@@ -18,7 +19,8 @@ function TourAttractionfooter(){
         <Col  md={6} lg={3}>
             <div className="contact-box text-light">
             <h4 className="text-center text-white py-3 border-bottom border-2">جاذبه های گردشگری</h4>
-            {attractions && attractions.footerattraction.map((place,i)=>(
+            {
+                isPending?<Loader/>:(attractions && attractions.footerattraction.map((place,i)=>(
                 <ul key={i}>
                     <li>
                         <NavLink to={place.path} className="text-light footer-link">
@@ -27,7 +29,8 @@ function TourAttractionfooter(){
                         </NavLink>
                     </li>
                 </ul>
-            ))}
+            )))
+            }
         </div>
         </Col>
     )

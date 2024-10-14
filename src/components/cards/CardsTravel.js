@@ -8,7 +8,6 @@ import { FaBus } from 'react-icons/fa6';
 import './CardsTravel.css';
 import cardImg1 from "../../assets/images/Cards/antalya2.webp";
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 function formatPrice(price) {
   let fPrice = ""
   for (let i = price.indexOf(".")-1; i >= 0; i--) {

@@ -117,12 +117,15 @@ import { Row, Col, Button, Collapse } from "react-bootstrap";
 import { MdOutlineNightlight } from "react-icons/md";
 import { LuCalendarDays, LuPlane } from "react-icons/lu";
 import { IoPricetagsOutline } from "react-icons/io5";
-import { useEffect, useState } from "react";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { useContext, useEffect, useState } from "react";
+import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp } from "react-icons/fa6";
 import DateTravelInfo from "../../dateTravelInfo/DateTravelInfo";
 import TablsTravel from "../../tabs/Tabstravel";
 import "./TravelsCard.css";
 import axios from "axios";
+import { FilterCTX } from "../../../pages/Tour/Tours";
+import { getDefaultNormalizer } from "@testing-library/react";
+import { replace, useNavigate } from "react-router-dom";
 
 // Function to format date from "1403-07-05T06:00:00+0000" to "1403/07/05"
 const formatDate = (dateString) => {
@@ -130,32 +133,13 @@ const formatDate = (dateString) => {
     return `${dateParts[0]}/${dateParts[1]}/${dateParts[2]}`;
 };
 
-function TravelsCard() {
-    const [openStates, setOpenStates] = useState([]);
-    const [cardDatas, setCardDatas] = useState([]);
+function TravelsCard({tours}) {
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await axios.get("https://rahorasm.msdcorporation.top/tour/packages/");
-                setCardDatas(res.data || []);
-                setOpenStates(Array(res.data.length).fill(false));
-            } catch (error) {
-                console.error("Error fetching data:", error.response ? error.response : error);
-            }
-        };
-        fetchData();
-    }, []);
-
-    const toggleCard = (index) => {
-        setOpenStates(prevStates =>
-            prevStates.map((state, i) => (i === index ? !state : false))
-        );
-    };
 
     return (
         <>
-            {cardDatas && cardDatas.map((cardData, index) => (
+            {tours && tours.map((cardData, index) => (
                 <div key={cardData.id}>
                     <div className="rounded border bg-light-subtle mx-2 mt-3 p-2">
                         <Row className="align-items-center g-2">
@@ -166,13 +150,13 @@ function TravelsCard() {
                                 <div className="border-bottom min-height50">
                                     <p className="mb-0 py-2">
                                         <span><MdOutlineNightlight /></span>
-                                        <span className="ps-1">{cardData.tours[0]?.tour_duration || "Unknown Duration"}</span>
+                                        <span className="ps-1">{cardData.tour_duration || "Unknown Duration"}</span>
                                     </p>
                                 </div>
                                 <div className="min-height50">
                                     <p className="mb-0 py-2">
                                         <span><LuCalendarDays /></span>
-                                        <span className="ps-2">{formatDate(cardData.tours[0]?.start_date)}</span>
+                                        <span className="ps-2">{formatDate(cardData.start_date)}</span>
                                     </p>
                                 </div>
                             </Col>
@@ -180,42 +164,38 @@ function TravelsCard() {
                                 <div className="border-bottom min-height50 ms-1">
                                     <p className="mb-0 py-2">
                                         <span><LuPlane /></span>
-                                        <span className="ps-2">{cardData.tours[0]?.airline?.name || "Unknown Airline"}</span>
+                                        <span className="ps-2">{cardData.airline?.name || "Unknown Airline"}</span>
                                     </p>
                                 </div>
                                 <div className="ms-1 min-height50">
                                     <p className="mb-0 py-2">
                                         <span><IoPricetagsOutline /></span>
-                                        <span className="ps-2">قیمت از: <strong className="text-secondary1">{cardData.tours[0]?.price} تومان</strong></span>
+                                        <span className="ps-2">قیمت از: <strong className="text-secondary1">{cardData.price} تومان</strong></span>
                                     </p>
                                 </div>
                             </Col>
                             <Col className="text-center">
                                 <Button
-                                    onClick={() => toggleCard(index)}
-                                    aria-controls={`example-collapse-text-${index}`}
-                                    aria-expanded={openStates[index]}
+                                    onClick={() =>navigate("/tour/detail/"+cardData.id,{replace:true})}
                                     className="btn-custome fs-07rem"
                                 >
-                                    تاریخ های تور {openStates[index] ? <FaAngleUp /> : <FaAngleDown />}
+                                    مشاهده  <FaAngleLeft/> 
                                 </Button>
                             </Col>
                         </Row>
                     </div>
-                    <Row className="shadow bg-light max-height2 rounded mx-2">
+                    {/* <Row className="shadow bg-light max-height2 rounded mx-2">
                         <Collapse in={openStates[index]}>
                             <div id={`example-collapse-${index}`}>
-                                {Array.isArray(cardData.tours) && cardData.tours.map((tour) => (
-                                    <DateTravelInfo 
-                                        key={tour.id} 
-                                        turn={formatDate(tour.start_date)}  // Format start date
-                                        retunTime={formatDate(tour.end_date)} // Format end date
-                                        packagePrice={tour.price} 
-                                    />
-                                ))}
+                                <DateTravelInfo 
+                                    key={cardData.id} 
+                                    turn={formatDate(cardData.start_date)}  // Format start date
+                                    retunTime={formatDate(cardData.end_date)} // Format end date
+                                    packagePrice={cardData.price} 
+                                />
                             </div>
                         </Collapse>
-                    </Row>
+                    </Row> */}
                 </div>
             ))}
             <TablsTravel />

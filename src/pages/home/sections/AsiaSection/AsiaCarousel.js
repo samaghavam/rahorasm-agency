@@ -1,17 +1,16 @@
 import Carousel from 'react-bootstrap/Carousel';
 import CardsTravel from '../../../../components/cards/CardsTravel';
 import { Row, Col} from 'react-bootstrap';
-import TourNumbers from '../../../AsiaTour/test/filters/tourNumbers/TourNumbers';
 import { useQuery } from '@tanstack/react-query';
 import axios from "axios"
 import { useEffect, useState } from 'react';
 function AsiaCarousel() {
     const [tours,setTour] = useState()
-    const { isPending, error, data, isFetching } = useQuery({
+    const { isPending, error, data, } = useQuery({
         queryKey: ['tours'],
         queryFn: async () => {
             const response = await axios.get(
-                'https://rahorasm.msdcorporation.top/tour/tours/',
+                process.env.REACT_APP_BASE_URL+'/tour/tours/',
             )
             return response.data
         },
@@ -21,12 +20,17 @@ function AsiaCarousel() {
             setTour(data.filter((tour)=>(tour.destination_airport.city.country.continent.id===1)))
         }
     },[data])
+    if(error){
+        return(<div>{error}</div>)
+    }
     return (
         <Carousel>
-            {[0,1].map(()=>{
-                if(tours)
+            {[1,2].map((value)=>{
+                if(isPending)
+                    return (<div key={value} style={{width:"50px",height:"60px"}} className="shimer"/>)
+                else if(tours)
                 return tours.map((tour) =>(
-                    <Carousel.Item interval={300} className='pb-4'>
+                    <Carousel.Item key={((tour.id + value) * (tour.id + value + 1) / 2) + value} interval={300} className='pb-4'>
                         <Row className='g-3 px-2'>
                             <Col md={6} xs={12}>
                                 <CardsTravel

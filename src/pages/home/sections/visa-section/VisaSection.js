@@ -12,7 +12,7 @@ function VisaSection(){
     const {data,isPending} = useQuery({
       queryKey:["Visas"],
       queryFn:async ()=>{
-        const response =await axios.get("https://rahorasm.msdcorporation.top/visa/visas/") 
+        const response =await axios.get(process.env.REACT_APP_BASE_URL+"/visa/visas/") 
         return response.data
       }
     })
@@ -52,8 +52,10 @@ function VisaSection(){
                     <Button
                       className="form-btn mt-3 card-style"
                       variant="info"
-                      onClick={()=>navigate(`/visa/?Visa=${selectedOption.value}`)}
-                    >
+                      onClick={()=>{
+                        if (selectedOption) {
+                          navigate(`/visa/?Visa=${selectedOption.value}`)
+                        }}}>
                         {isLoading ? (
                             <div className="d-flex justify-content-center"><BtnLoader /></div>) : ("جستجو")}
                     </Button>

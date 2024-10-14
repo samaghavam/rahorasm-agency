@@ -13,7 +13,7 @@ function Blogs() {
   const {isPending,data,error} = useQuery({
     queryKey:["blogs"],
     queryFn:async()=>{
-      const res= await axios.get("https://rahorasm.msdcorporation.top/blog/posts/");
+      const res= await axios.get(process.env.REACT_APP_BASE_URL+"/blog/posts/");
       return res.data
     }
   })

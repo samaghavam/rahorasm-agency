@@ -241,14 +241,12 @@ const LoginTempCode = () => {
         console.log(enteredCode)
         if(valid){
             try {
-                const response = await axios.post('https://rahorasm.msdcorporation.top/auth/signup/validate', {
+                const response = await axios.post(process.env.REACT_APP_BASE_URL+'/auth/signup/validate', {
                     phone_number:phone_number,
                     otp: enteredCode
                 });
-                if (response.status==200) {
-                    toast.success("Signup successful!"); 
-                    console.log(response.data)
-                    document.cookie += `access_token=${response.data.token}; path=/`; // Set access token cookie
+                if (response.status==200||response.status==201) {
+                    document.cookie += `active=true; path=/`; // Set access token cookie
                     navigate("/panel"); 
                 }
             } catch (error) {
@@ -268,7 +266,7 @@ const LoginTempCode = () => {
         });
 
         try {
-            await axios.post('http://5.161.155.143/auth/signup/request',
+            await axios.post('http://rahorasm.msdcorporation.top/auth/signup/request',
                 JSON.stringify({
                     "phone_number": phone_number,
                     "password":pwd,

@@ -4,6 +4,7 @@ import { Container, Row, Col, Image, Form, Button, Alert } from "react-bootstrap
 import loginImg from "../../assets/images/login/beautiful-collage-travel-concept.jpg";
 import useSignup from "../../hooks/signUp/useSignUp";
 import useWindowDimensions from "../../hooks/useWindows/useWindows";
+import Loader from "../../components/loaders/Loader"
 
 const USER_REGEX = /((0?9)|(\+?989))\d{9}/g;
 const PWD_REGEX = /^(?=.*[A-Za-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
@@ -61,9 +62,6 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setFSubmit(true)
-        console.log(pwd.valid,pwd.ValidMatch,user.valid,mobile.valid,PWD_REGEX.test(pwd.pwd),!pwd.valid&&!pwd.ValidMatch&&!user.valid&&!mobile.valid)
-        console.log(pwd.pwd,pwd.match,user.user,mobile.mobile)
-        console.log(pwd.errMsg,user.errMsg,mobile.errMsg)
         if(pwd.valid&&pwd.ValidMatch&&user.valid&&mobile.valid){
             signupUser(user.user, pwd.pwd,mobile.mobile,setErrMsg); 
         }
@@ -72,6 +70,7 @@ const Register = () => {
         <>
             <section>
                 <Container style={{ width: "60%" }}>
+                    {formSumbited&&<Loader/>}
                     <Row className="justify-content-center g-0 " style={{ "height": "80vh",maxHeight:"100%" }}>
                         <Col className="px-4">
                             <h4 className="fw-bold text-center">ثبت نام</h4>
@@ -202,7 +201,7 @@ const Register = () => {
     // const [apiError, setApiError] = useState('');
 // 
     // const onSubmit = async (data) => {
-        // const apiUrl = 'http://5.161.155.143/auth/signup/request';
+        // const apiUrl = 'http://rahorasm.msdcorporation.top/auth/signup/request';
         // try {
             // const response = await axios.post(apiUrl, {
                 // phone_number: data.phone_number,
