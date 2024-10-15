@@ -16,7 +16,7 @@ function Visa() {
         queryKey:[visaId],
         enabled:visaId!=undefined,
         queryFn:async ()=>{
-            let res = await axios.get(`process.env.REACT_APP_BASE_URL/visa/visas/${visaId}`)
+            let res = await axios.get(process.env.REACT_APP_BASE_URLL+`/visa/visas/${visaId}`)
             return res.data
         }
     })

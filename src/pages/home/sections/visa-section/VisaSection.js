@@ -16,15 +16,14 @@ function VisaSection(){
         return response.data
       }
     })
-    const [countery,setCountery]=useState([])
+    const [country,setcountry]=useState([])
     useEffect(()=>{
       if(data){
-        setCountery(data.map((c,i)=>{return {value:c.id,label:c.title}}))
+        setcountry(data.map((c,i)=>{return {value:c.id,label:c.title}}))
         console.log(data.map((c)=>c.title))
       }
-        console.log(countery)
+        console.log(country)
     },[data])
-    const [isLoading , setIsLoading]= useState(false);
     return(
         <div className="pt-2 pb-4 px-1">
           <Form className=" test-form rounded px-5 py-3 card-style">
@@ -32,8 +31,8 @@ function VisaSection(){
           <Select
             className="basic-single"
             classNamePrefix="select"
-            defaultValue={countery.length>0?countery[0]:"ویزا موجود نیست"}
-            options={countery}
+            defaultValue={country.length>0?country[0]:"ویزا موجود نیست"}
+            options={country}
             isDisabled={false}
             isLoading={isPending}
             isClearable={false}
@@ -56,7 +55,7 @@ function VisaSection(){
                         if (selectedOption) {
                           navigate(`/visa/?Visa=${selectedOption.value}`)
                         }}}>
-                        {isLoading ? (
+                        {isPending ? (
                             <div className="d-flex justify-content-center"><BtnLoader /></div>) : ("جستجو")}
                     </Button>
                   </div>

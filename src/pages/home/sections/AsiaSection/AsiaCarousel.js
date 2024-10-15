@@ -5,21 +5,15 @@ import { useQuery } from '@tanstack/react-query';
 import axios from "axios"
 import { useEffect, useState } from 'react';
 function AsiaCarousel() {
-    const [tours,setTour] = useState()
-    const { isPending, error, data, } = useQuery({
+    const { isPending, error, data:tours, } = useQuery({
         queryKey: ['tours'],
         queryFn: async () => {
             const response = await axios.get(
-                process.env.REACT_APP_BASE_URL+'/tour/tours/',
+                process.env.REACT_APP_BASE_URL+'/tour/tours/?continent=1',
             )
             return response.data
         },
     })
-    useEffect(()=>{
-        if(data){
-            setTour(data.filter((tour)=>(tour.destination_airport.city.country.continent.id===1)))
-        }
-    },[data])
     if(error){
         return(<div>{error}</div>)
     }

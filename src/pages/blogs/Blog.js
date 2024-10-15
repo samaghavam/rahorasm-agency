@@ -13,7 +13,7 @@ const Blog = () => {
         queryKey:[blogId],
         enabled:blogId!=undefined,
         queryFn:async ()=>{
-                const response = await axios.get(`process.env.REACT_APP_BASE_URL/blog/posts/${blogId}/`)
+                const response = await axios.get(process.env.REACT_APP_BASE_URLL+`/blog/posts/${blogId}/`)
                 return response.data
         }
     })

@@ -5,7 +5,7 @@ import {getCookie} from "../../utils";
 
 // const REGISTER_URL = "http://rahorasm.msdcorporation.top/auth/signup/request"; 
 
-const REGISTER_URL = process.env.REACT_APP_BASE_URL+"/auth/signup/request"; 
+const REGISTER_URL = process.env.REACT_APP_BASE_URLL+"/auth/signup/request"; 
 const csrftoken = getCookie('csrftoken');
 
 

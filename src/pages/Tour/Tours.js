@@ -7,7 +7,7 @@ import ButtonCarousel from "./filters/ordering/Ordering";
 import axios from "axios";
 import { createContext, useCallback, useEffect,useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useSearchParams } from "react-router-dom";
 
 export const FilterCTX = createContext({
     init:{},
@@ -31,7 +31,7 @@ const SortBy ={
    longest:"longest"
 }
 function Tours(){
-    const {cityId}=useParams()
+    const location =useLocation();
     const [init,setInit] = useState({})
     const [priceRange,setPriceRange] = useState()
     const [airline,setAirline] = useState()
@@ -41,16 +41,14 @@ function Tours(){
     const submit = useCallback(()=>{
         let tour =data.tours.filter((v)=>v.price>=priceRange[0]&&v.price<=priceRange[1])
         tour = tour.filter((v)=>airline.includes(v.airline.name))
-        console.log(tour,airline)
         tour = tour.filter((v)=>duraiton.includes(v.tour_duration))
-        console.log(tour)
         setTours(tour)
     })
     const {data,isPending} = useQuery({
-        queryKey:["tourPackages"+cityId],
-        enabled:cityId!=undefined,
+        queryKey:["tourPackages"+location.search],
+        enabled:location.search!=undefined,
         queryFn:async ()=>{
-            const res = await axios.get(process.env.REACT_APP_BASE_URL+"/tour/packages/"+cityId);
+            const res = await axios.get(process.env.REACT_APP_BASE_URL+"/tour/tours/"+location.search);
             return res.data
         } 
     })
@@ -83,24 +81,49 @@ function Tours(){
         setTours(LocalTour)
     },[sort])
     useEffect(()=>{
+        let meta = location.search.replace("?","").split("=")[0]
         if(data){
-            let price = data.tours.map((v)=>v.price)
-            setTours(data.tours)
-            setAirline(data.tours.map((v)=>v.airline.name))
-            setDuration(data.tours.map((v)=>v.tour_duration))
+            let name ,link1, link2, link3, link4
+            console.log(data)
+            console.log(meta)
+            if(meta==="city"){
+                name = data[0].city.name
+                link1=data[0].city.land
+                link2=data[0].city.ProsCons              
+                link3=data[0].city.attraction
+                link4=data[0].city.Basetime
+            } 
+            else if (meta === "country") {
+                name = data[0].city.country.name
+                link1=data[0].city.country.land
+                link2=data[0].city.country.ProsCons              
+                link3=data[0].city.country.attraction
+                link4=data[0].city.country.Basetime
+            }
+            else if(meta==="continent"){
+                name=  data[0].city.country.continent.name
+                link1=data[0].city.country.continent.land
+                link2=data[0].city.country.continent.ProsCons              
+                link3=data[0].city.country.continent.attraction
+                link4=data[0].city.country.continent.Basetime
+            }
+            let price = data.map((v)=>v.price)
+            setTours(data)
+            setAirline(data.map((v)=>v.airline.name))
+            setDuration(data.map((v)=>v.tour_duration))
             setPriceRange([price.min(),price.max()])
             setInit({      
-                link1: data.land,
-                link2: data.ProsCons,
-                link3: data.attraction,
-                link4: data.Basetime,
-                name:data.city.name,
+                link1: link1,
+                link2: link2,
+                link3: link3,
+                link4: link4,
+                name:name,
                 min_price:price.min(),
                 max_price:price.max(),
-                time:data.tours.map((v)=>v.start_date),
-                airline:data.tours.map((v)=>v.airline.name),
-                Count:data.tours.length,
-                toursDurations:data.tours.map((v)=>v.tour_duration)})
+                time:data.map((v)=>v.start_date),
+                airline:data.map((v)=>v.airline.name),
+                Count:data.length,
+                toursDurations:data.map((v)=>v.tour_duration)})
         }
     },[data])
 

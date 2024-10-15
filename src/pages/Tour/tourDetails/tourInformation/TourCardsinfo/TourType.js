@@ -122,7 +122,7 @@ function NavTabsInfo() {
   useEffect(() => {
     const fetchTourData = async () => {
       try {
-        const response = await fetch(process.env.REACT_APP_BASE_URL+'/tour/tours/'); // Replace with your API endpoint
+        const response = await fetch(process.env.REACT_APP_BASE_URLL+'/tour/tours/'); // Replace with your API endpoint
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

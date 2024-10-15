@@ -34,7 +34,7 @@ export let routes = [
       { path: "register", element: <Register /> },
       { path: "temporyLogin", element: <LoginTempCode /> },
       { path: "tour/detail/:tourId", element: <TourDetail /> },
-      { path: "tour/:cityId", element: <Tours /> },
+      { path: "tour/", element: <Tours /> },
       { path: "blogs/:blogId", element: <Blog /> },
       // {
       //   path: 'asia-tours/*',

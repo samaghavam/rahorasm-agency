@@ -54,7 +54,7 @@ function InfoTime({city_id,}) {
     queryKey:["tourPackages"+city_id],
     enabled: city_id!= undefined,
     queryFn: async () => {
-      const res = await axios.get(process.env.REACT_APP_BASE_URL + "/tour/packages/" +city_id);
+      const res = await axios.get(process.env.REACT_APP_BASE_URLL + "/tour/packages/" +city_id);
       return res.data
     } 
   })

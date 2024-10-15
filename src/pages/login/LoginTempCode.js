@@ -59,7 +59,7 @@
 //         const enteredCode = codesRef.current.map(input => input.value).join("");
         
 //         try {
-//             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/login/request`, { phoneNumber, code: enteredCode });
+//             const response = await axios.post(`${process.env.REACT_APP_BASE_URLL}/auth/login/request`, { phoneNumber, code: enteredCode });
 //             console.log("Response:", response.data);
             
 //             // Navigate to the Panel after a successful response
@@ -83,7 +83,7 @@
         
 //         // Send OTP request to the API with the new endpoint
 //         try {
-//             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/login/request`, { phoneNumber: enteredPhoneNumber });
+//             const response = await axios.post(`${process.env.REACT_APP_BASE_URLL}/auth/login/request`, { phoneNumber: enteredPhoneNumber });
 //             console.log("OTP sent:", response.data);
 //         } catch (error) {
 //             console.error("Error sending OTP: ", error);
@@ -161,7 +161,6 @@ import { IoMdArrowRoundForward } from "react-icons/io";
 import { useNavigate, useLocation, NavLink, redirect, json } from "react-router-dom";
 import { Button,Alert } from "react-bootstrap";
 import axios from "axios";
-import { toast } from "react-toastify"; 
 
 const LoginTempCode = () => {
     const codesRef = useRef([]);
@@ -241,7 +240,7 @@ const LoginTempCode = () => {
         console.log(enteredCode)
         if(valid){
             try {
-                const response = await axios.post(process.env.REACT_APP_BASE_URL+'/auth/signup/validate', {
+                const response = await axios.post(process.env.REACT_APP_BASE_URLL+'/auth/signup/validate', {
                     phone_number:phone_number,
                     otp: enteredCode
                 });

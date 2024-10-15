@@ -7,21 +7,16 @@ import Loader from '../loaders/Loader';
 import { useEffect, useState } from 'react';
 
 function CarouselCustome(){
-    const [tours,setTour]=useState()
-    const { isPending, error,data , isFetching } = useQuery({
+    const { isPending, error,data:tours , isFetching } = useQuery({
       queryKey: ['tours'],
       enabled:false,
       queryFn: async () => {
         const response = await axios.get(
-          process.env.REACT_APP_BASE_URL+'/tour/tours/',
+          process.env.REACT_APP_BASE_URLL+'/tour/tours/?continent=1',
         )
         return response.data
       },
     })
-    useEffect(()=>{
-        if(data)
-            setTour(data.filter((tour)=>(tour.destination_airport.city.country.continent.id===1)))
-    },[data])
     return (
         <>
             {isPending ? (<Loader />) : (

@@ -42,7 +42,7 @@ function Login() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(process.env.REACT_APP_BASE_URL+"/auth/login/request", {
+      const response = await fetch(process.env.REACT_APP_BASE_URLL+"/auth/login/request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userCredentials),

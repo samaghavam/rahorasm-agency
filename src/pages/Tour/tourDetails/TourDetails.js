@@ -16,7 +16,7 @@ function TourDetails() {
   const {data}= useQuery({
     queryKey:["Tourd"+TbCircuitGroundDigital],
     queryFn:async()=>{
-      const res  = await axios.get(process.env.REACT_APP_BASE_URL+`/tour/tours/${tourId}`)
+      const res  = await axios.get(process.env.REACT_APP_BASE_URLL+`/tour/tours/${tourId}`)
       return res.data
     }
   })

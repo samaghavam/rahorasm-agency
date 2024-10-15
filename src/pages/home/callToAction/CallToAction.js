@@ -10,7 +10,7 @@ function CallToAction(){
         AOS.init();
       }, []);
     const getEurope=async()=>{
-        const response = await axios.get(process.env.REACT_APP_BASE_URL+`/tour/packages/${EUID}/CsvTours/`)
+        const response = await axios.get(process.env.REACT_APP_BASE_URLL+`/tour/packages/${EUID}/CsvTours/`)
         const blob = new Blob([response.data], {type: response.data.type});
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');

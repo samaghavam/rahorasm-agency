@@ -13,7 +13,7 @@ function About() {
         queryKey:["aboutUs"],
         queryFn:async()=>{
                 // const res = await axios.get("http://rahorasm.msdcorporation.top/api/aboutus/");
-                const res = await axios.get(process.env.REACT_APP_BASE_URL+"/api/aboutus/");
+                const res = await axios.get(process.env.REACT_APP_BASE_URLL+"/api/aboutus/");
 
                 return res.data
         }

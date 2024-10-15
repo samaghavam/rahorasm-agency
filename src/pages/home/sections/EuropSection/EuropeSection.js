@@ -5,6 +5,7 @@ import axios from "axios"
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import Loader from "../../../../components/loaders/Loader";
+import { Link } from "react-router-dom";
 
 function EuropeSection(){
     const [euTours,setEUtours]= useState([])
@@ -12,16 +13,11 @@ function EuropeSection(){
         queryKey: ['Europetour'],
         queryFn: async () => {
             const response = await axios.get(
-                process.env.REACT_APP_BASE_URL+'/tour/tours/',
+                process.env.REACT_APP_BASE_URL+'/tour/tours/?continent=2',
             )
             return response.data
         },
     })
-    useEffect(()=>{
-        if(data){
-            setEUtours(data.filter((tour)=>(tour.destination_airport.city.country.continent.id===2)))
-        }
-    },[data])
     return(
         <Col className="bg-black p-5 top-left-b " xs={12} lg={6}>
             <h3 className="text-white pb-2 fw-bold">تازه ترین تورهای اروپا <span className="fs-6">(ویژه تابستان 1403)</span></h3>
@@ -47,7 +43,9 @@ function EuropeSection(){
             }
             </div>
             <h5 href="" className="text-light text-center mt-5 fw-bold">
-                <span className="pe-2 text-white">مشاهده بیشتر</span>
+                <Link to={"./tour/?continent=2"}>
+                    <span className="pe-2 text-white">مشاهده بیشتر</span>
+                </Link>
                 <span><FaArrowLeft fontSize='1.3rem' color="white"/></span>
             </h5>
         </Col>

@@ -5,17 +5,29 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { TbCircleLetterRFilled } from "react-icons/tb";
 import { IoPersonOutline } from "react-icons/io5";
 import Submenu from './submenu/Submenu';
-import { NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import { useEffect,useState } from 'react';
-import {getCookie} from '../../utils';
-
-
+import {deleteCokie, getCookie} from '../../utils';
+import { PiSignOutBold } from "react-icons/pi";
+import axios from "axios"
 
 function NavCustome() {
   const [active,setActive]=useState()
   useEffect(()=>{
-    setActive(getCookie("active")==true)
+    setActive(getCookie("active")==false)
   },[])
+  const signout = async() => {
+    try{
+      await axios.get(
+        process.env.REACT_APP_BASE_URL + '/auth/logout/',
+      )
+      setActive(true)
+      deleteCokie("active")
+    }catch(error){
+      setActive(true)
+      deleteCokie("active")
+    }
+  }
   return (
     <>
       {['lg'].map((expand) => (
@@ -52,7 +64,12 @@ function NavCustome() {
                     <NavLink to='/register'>
                       <span className='px-2'>ثبت نام</span>
                       <span><IoPersonOutline /></span>
-                    </NavLink></> : <></>
+                    </NavLink></> : <>
+                      <div onClick={signout} style={{"cursor":"pointer"}}>
+                        <span className="px-2"><PiSignOutBold /></span>
+                        <span className="px-2">خروج از سیستم</span>
+                      </div>
+                    </>
                   }
                 </Nav>
               </Offcanvas.Body>
